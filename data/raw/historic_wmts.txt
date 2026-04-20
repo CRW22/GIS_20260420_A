@@ -3,9 +3,25 @@
 WMTS 端點：https://gis.sinica.edu.tw/tileserver/wmts
 RESTful 端點：https://gis.sinica.edu.tw/tileserver/file-exists.php?img={Layer_ID}-{Image_Format}-{z}-{x}-{y}
 
-本案例使用的預設圖層：
+本案例提供的圖層：
 - Layer ID: JM20K_1904
-- 說明：1904-日治臺灣堡圖（明治版）-1:20,000
+  說明：1904-日治臺灣堡圖(明治版)-1:20,000
+- Layer ID: JM20K_1921
+  說明：1921-日治臺灣堡圖(大正版)-1:20,000
+- Layer ID: JM25K_1942
+  說明：1942-日治二萬五千分之一地形圖(昭和修正版)
+- Layer ID: AMCityPlan_1945
+  說明：1945-美軍繪製臺灣城市地圖
+- Layer ID: TM25K_1950
+  說明：1950-臺灣地形圖-1:25,000
+- Layer ID: TM25K_1989
+  說明：1989-臺灣經建1版地形圖-1:25,000
+- Layer ID: TM25K_1993
+  說明：1993-臺灣經建2版地形圖-1:25,000
+- Layer ID: TM25K_2001
+  說明：2001-臺灣經建3版地形圖-1:25,000
+- Layer ID: TM25K_2003
+  說明：2003-臺灣經建4版地形圖-1:25,000
 - Tile matrix set: GoogleMapsCompatible
 - 格式：image/jpeg
 
@@ -13,7 +29,7 @@ RESTful 端點：https://gis.sinica.edu.tw/tileserver/file-exists.php?img={Layer
 https://gis.sinica.edu.tw/tileserver/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=JM20K_1904&STYLE=_null&TILEMATRIXSET=GoogleMapsCompatible&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=image/jpeg
 
 本案例實際採用的 Leaflet URL template（RESTful）:
-https://gis.sinica.edu.tw/tileserver/file-exists.php?img=JM20K_1904-jpg-{z}-{x}-{y}
+https://gis.sinica.edu.tw/tileserver/file-exists.php?img={Layer_ID}-jpg-{z}-{x}-{y}
 
 注意事項：
 - 這是外部圖磚服務，課堂與 GitHub Pages 展示時需允許網路存取

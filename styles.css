@@ -162,6 +162,7 @@ h1 {
 }
 
 .toggle,
+.select-field,
 .range-field {
   display: grid;
   gap: 10px;
@@ -183,6 +184,17 @@ input[type="checkbox"] {
 input[type="range"] {
   width: 100%;
   accent-color: var(--copper);
+}
+
+select {
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid rgba(36, 75, 70, 0.18);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--ink);
+  font: inherit;
 }
 
 .ghost-button {

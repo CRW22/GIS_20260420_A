@@ -1,9 +1,47 @@
 const STATION_CENTER = [25.13242, 121.7394];
 const QUERY_RADIUS_METERS = 100;
 const OSM_TILE_URL = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
-const HISTORY_LAYER_URL =
-  "https://gis.sinica.edu.tw/tileserver/file-exists.php?img=JM20K_1904-jpg-{z}-{x}-{y}";
+const HISTORY_TILE_URL_TEMPLATE =
+  "https://gis.sinica.edu.tw/tileserver/file-exists.php?img={layerId}-jpg-{z}-{x}-{y}";
 const TILE_REFERRER_POLICY = "strict-origin-when-cross-origin";
+const HISTORY_LAYERS = [
+  {
+    id: "JM20K_1904",
+    title: "1904-日治臺灣堡圖(明治版)-1:20,000",
+  },
+  {
+    id: "JM20K_1921",
+    title: "1921-日治臺灣堡圖(大正版)-1:20,000",
+  },
+  {
+    id: "JM25K_1942",
+    title: "1942-日治二萬五千分之一地形圖(昭和修正版)",
+  },
+  {
+    id: "AMCityPlan_1945",
+    title: "1945-美軍繪製臺灣城市地圖",
+  },
+  {
+    id: "TM25K_1989",
+    title: "1989-臺灣經建1版地形圖-1:25,000",
+  },
+  {
+    id: "TM25K_1950",
+    title: "1950-臺灣地形圖-1:25,000",
+  },
+  {
+    id: "TM25K_1993",
+    title: "1993-臺灣經建2版地形圖-1:25,000",
+  },
+  {
+    id: "TM25K_2001",
+    title: "2001-臺灣經建3版地形圖-1:25,000",
+  },
+  {
+    id: "TM25K_2003",
+    title: "2003-臺灣經建4版地形圖-1:25,000",
+  },
+];
 
 const map = L.map("map", {
   zoomControl: false,
@@ -24,17 +62,6 @@ const baseLayer = L.tileLayer(OSM_TILE_URL, {
 
 baseLayer.addTo(map);
 
-const historyLayer = L.tileLayer(HISTORY_LAYER_URL, {
-  pane: "historyPane",
-  maxZoom: 19,
-  opacity: 0.72,
-  attribution:
-    '歷史圖層：<a href="https://gis.sinica.edu.tw/tileserver/" target="_blank" rel="noreferrer">中央研究院臺灣百年歷史地圖圖磚服務</a>',
-  referrerPolicy: TILE_REFERRER_POLICY,
-});
-
-historyLayer.addTo(map);
-
 const siteLayer = L.layerGroup().addTo(map);
 const queryCircle = L.circle(STATION_CENTER, {
   radius: QUERY_RADIUS_METERS,
@@ -52,6 +79,7 @@ const queryMarker = L.marker(STATION_CENTER, {
 }).addTo(map);
 
 const historyToggle = document.getElementById("history-toggle");
+const historySelect = document.getElementById("history-select");
 const historyOpacity = document.getElementById("history-opacity");
 const historyStatus = document.getElementById("history-status");
 const hitCount = document.getElementById("hit-count");
@@ -60,11 +88,102 @@ const resultList = document.getElementById("result-list");
 const resetViewButton = document.getElementById("reset-view");
 
 let historyErrorShown = false;
+let selectedHistoryLayerId = HISTORY_LAYERS[0].id;
+let historyLayer = null;
 let siteRecords = [];
+
+function getHistoryLayerConfig(layerId) {
+  return HISTORY_LAYERS.find((layer) => layer.id === layerId) ?? HISTORY_LAYERS[0];
+}
+
+function getHistoryTileUrl(layerId) {
+  return HISTORY_TILE_URL_TEMPLATE.replace("{layerId}", layerId);
+}
+
+function populateHistorySelect() {
+  const options = HISTORY_LAYERS.map((layer) => {
+    const option = document.createElement("option");
+    option.value = layer.id;
+    option.textContent = layer.title;
+    return option;
+  });
+
+  historySelect.replaceChildren(...options);
+  historySelect.value = selectedHistoryLayerId;
+}
 
 function updateHistoryStatus(text, isWarn = false) {
   historyStatus.textContent = text;
   historyStatus.classList.toggle("warn", isWarn);
+}
+
+function updateSelectedLayerLabel() {
+  const selectedLayer = getHistoryLayerConfig(selectedHistoryLayerId);
+  updateHistoryStatus(`${selectedLayer.id} 已選取`);
+}
+
+function createHistoryLayer(layerId) {
+  const tileLayer = L.tileLayer(getHistoryTileUrl(layerId), {
+    pane: "historyPane",
+    maxZoom: 19,
+    opacity: Number(historyOpacity.value),
+    attribution:
+      '歷史圖層：<a href="https://gis.sinica.edu.tw/tileserver/" target="_blank" rel="noreferrer">中央研究院臺灣百年歷史地圖圖磚服務</a>',
+    referrerPolicy: TILE_REFERRER_POLICY,
+  });
+
+  tileLayer.on("loading", () => {
+    if (!historyToggle.checked) {
+      return;
+    }
+
+    updateHistoryStatus(`${layerId} 載入中`);
+  });
+
+  tileLayer.on("load", () => {
+    historyErrorShown = false;
+    updateHistoryStatus(`${layerId} 正常`);
+    refreshOverlayStack();
+  });
+
+  tileLayer.on("tileerror", () => {
+    if (historyErrorShown || layerId !== selectedHistoryLayerId) {
+      return;
+    }
+
+    historyErrorShown = true;
+    updateHistoryStatus(`${layerId} 暫時不可用`, true);
+    querySummary.textContent =
+      "這個歷史圖層目前暫時無法載入，已退回 OSM 現代底圖與本地歷史景點查詢。";
+
+    if (historyLayer && map.hasLayer(historyLayer)) {
+      map.removeLayer(historyLayer);
+    }
+
+    historyToggle.checked = false;
+  });
+
+  return tileLayer;
+}
+
+function setHistoryLayer(layerId) {
+  selectedHistoryLayerId = layerId;
+  historyErrorShown = false;
+
+  if (historyLayer && map.hasLayer(historyLayer)) {
+    map.removeLayer(historyLayer);
+  }
+
+  historyLayer = createHistoryLayer(layerId);
+
+  if (historyToggle.checked) {
+    updateHistoryStatus(`${layerId} 載入中`);
+    historyLayer.addTo(map);
+    refreshOverlayStack();
+    return;
+  }
+
+  updateSelectedLayerLabel();
 }
 
 function refreshOverlayStack() {
@@ -76,41 +195,10 @@ function refreshOverlayStack() {
   });
 }
 
-historyLayer.on("loading", () => {
-  if (!historyToggle.checked) {
-    return;
-  }
-
-  updateHistoryStatus("歷史圖層載入中");
-});
-
-historyLayer.on("load", () => {
-  historyErrorShown = false;
-  updateHistoryStatus("歷史圖層正常");
-  refreshOverlayStack();
-});
-
-historyLayer.on("tileerror", () => {
-  if (historyErrorShown) {
-    return;
-  }
-
-  historyErrorShown = true;
-  updateHistoryStatus("歷史圖層暫時不可用", true);
-  querySummary.textContent =
-    "歷史圖磚目前暫時無法載入，已退回 OSM 現代底圖與本地歷史景點查詢。";
-
-  if (map.hasLayer(historyLayer)) {
-    map.removeLayer(historyLayer);
-  }
-
-  historyToggle.checked = false;
-});
-
 historyToggle.addEventListener("change", (event) => {
   if (event.target.checked) {
     historyErrorShown = false;
-    updateHistoryStatus("歷史圖層載入中");
+    updateHistoryStatus(`${selectedHistoryLayerId} 載入中`);
     historyLayer.addTo(map);
     historyLayer.redraw();
     refreshOverlayStack();
@@ -119,6 +207,10 @@ historyToggle.addEventListener("change", (event) => {
 
   map.removeLayer(historyLayer);
   updateHistoryStatus("歷史圖層已關閉");
+});
+
+historySelect.addEventListener("change", (event) => {
+  setHistoryLayer(event.target.value);
 });
 
 historyOpacity.addEventListener("input", (event) => {
@@ -258,6 +350,9 @@ function refreshHits(latlng) {
     resultList.appendChild(card);
   });
 }
+
+populateHistorySelect();
+setHistoryLayer(selectedHistoryLayerId);
 
 loadSites().catch((error) => {
   hitCount.textContent = "讀取失敗";
