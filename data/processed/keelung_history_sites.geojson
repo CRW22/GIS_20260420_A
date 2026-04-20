@@ -1,0 +1,226 @@
+{
+  "type": "FeatureCollection",
+  "name": "keelung_history_sites",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "gate-plaza",
+        "name": "國門廣場",
+        "category": "城市廣場",
+        "era": "1891 火車站前廣場脈絡 / 2022 再造",
+        "address": "基隆市仁愛區港西街 6-2 號",
+        "lat": 25.1319577,
+        "lng": 121.7401708,
+        "summary_zh": "以「零點廣場」為概念，呼應基隆作為水路、鐵道與公路起點的城市記憶，是理解車站與港口關係的第一站。",
+        "source_title": "國門廣場｜觀光多媒體開放資料",
+        "source_url": "https://media.taiwan.net.tw/en-us/portal/travel/details/attraction_376570000a_000528"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.7401708,
+          25.1319577
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "yang-ming-museum",
+        "name": "陽明海洋文化藝術館",
+        "category": "歷史建築 / 博物館",
+        "era": "1915",
+        "address": "基隆市仁愛區港西街 4 號",
+        "lat": 25.1326261,
+        "lng": 121.7399987,
+        "summary_zh": "前身是 1915 年落成的日本郵船株式會社基隆出張所，現以海洋與港埠主題重新活化，是車站旁最具辨識度的歷史建築之一。",
+        "source_title": "陽明海洋文化藝術館｜觀光多媒體開放資料",
+        "source_url": "https://media.taiwan.net.tw/zh-tw/portal/travel/details/attraction_376570000a_000431"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.7399987,
+          25.1326261
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "harbor-building",
+        "name": "海港大樓（基隆港合同廳舍）",
+        "category": "港務建築",
+        "era": "日治時期",
+        "address": "基隆市仁愛區港西街 6 號",
+        "lat": 25.1331168,
+        "lng": 121.74057646453,
+        "summary_zh": "原名「基隆港合同廳舍」，用來集中分散於港區的港務機構，至今仍能看見基隆港作為現代港埠節點的行政痕跡。",
+        "source_title": "海港大樓（基隆港合同廳舍）｜觀光多媒體開放資料",
+        "source_url": "https://media.taiwan.net.tw/zh-tw/portal/travel/details/attraction_376570000a_597778"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.74057646453,
+          25.1331168
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "qingan-temple",
+        "name": "慶安宮",
+        "category": "信仰 / 廟宇",
+        "era": "清乾隆年間",
+        "address": "基隆市仁愛區忠二路 1 號",
+        "lat": 25.1293841,
+        "lng": 121.7405876,
+        "summary_zh": "港都最早的媽祖信仰據點之一，從牛稠港遷至今日街角，見證了基隆海港居民與出入港平安祈願的長期延續。",
+        "source_title": "慶安宮｜觀光多媒體開放資料",
+        "source_url": "https://media.taiwan.net.tw/en-us/portal/travel/details/attraction_376570000a_000448"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.7405876,
+          25.1293841
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "dianji-temple",
+        "name": "奠濟宮",
+        "category": "信仰 / 廟宇",
+        "era": "清同治十二年",
+        "address": "基隆市仁愛區仁三路 27 之 2 號",
+        "lat": 25.1281559,
+        "lng": 121.7429968,
+        "summary_zh": "奠濟宮是基隆市區大型古廟之一，與後來發展成廟口夜市的街區緊密相連，可用來說明信仰與商業如何共同形塑街區記憶。",
+        "source_title": "奠濟宮｜觀光多媒體開放資料",
+        "source_url": "https://media.taiwan.net.tw/en-us/portal/travel/details/attraction_376570000a_000441"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.7429968,
+          25.1281559
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "keelung-story-house",
+        "name": "基隆故事館",
+        "category": "地方歷史展館",
+        "era": "1990 設館 / 2024 重整",
+        "address": "基隆市中正區信一路 181 號 M 樓",
+        "lat": 25.1313936,
+        "lng": 121.7440708,
+        "summary_zh": "以基隆港為主軸，重新整理成三大展區，透過常設展回看港市發展、戰後復甦與百年導航，是課堂上串接地圖與敘事的好例子。",
+        "source_title": "基隆故事館｜基隆市文化觀光局",
+        "source_url": "https://klctb.klcg.gov.tw/cp.aspx?n=8750"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.7440708,
+          25.1313936
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "keelung-tower",
+        "name": "基隆塔",
+        "category": "城市地標 / 觀景設施",
+        "era": "2023",
+        "address": "基隆市中正區義二路 128 號",
+        "lat": 25.1328033,
+        "lng": 121.7470181,
+        "summary_zh": "以港區橋式起重機為設計靈感的新地標，能從高處重新觀看車站、港區與山城的空間關係，適合當作歷史與當代城市視角的對照點。",
+        "source_title": "基隆塔｜觀光多媒體開放資料",
+        "source_url": "https://media.taiwan.net.tw/zh-tw/portal/travel/details/attraction_376570000a_000056"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.7470181,
+          25.1328033
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "keelung-fude",
+        "name": "基隆福德宮",
+        "category": "信仰 / 廟宇",
+        "era": "清道光二十九年",
+        "address": "基隆市仁愛區愛三路 49 巷 9 號",
+        "lat": 25.1281437,
+        "lng": 121.7419859,
+        "summary_zh": "位於仁愛市場旁的百年土地公廟，現今街名與巷弄記憶仍可回扣到它在地方生活中的位置。",
+        "source_title": "基隆福德宮｜觀光多媒體開放資料",
+        "source_url": "https://media.taiwan.net.tw/en-us/portal/travel/details/attraction_376570000a_000449"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.7419859,
+          25.1281437
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "taiping-hillside",
+        "name": "太平山城（罾仔寮）",
+        "category": "山城聚落",
+        "era": "港區勞工聚落",
+        "address": "基隆市中山區中山里一帶",
+        "lat": 25.1344094,
+        "lng": 121.7371344,
+        "summary_zh": "西岸山城與港區政策相依並存，從漁村與勞工聚落逐步轉為今日可閱讀城市紋理的山城場景。",
+        "source_title": "太平山城（罾仔寮）｜觀光多媒體開放資料",
+        "source_url": "https://media.taiwan.net.tw/en-us/portal/travel/details/attraction_376570000a_001245"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.7371344,
+          25.1344094
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "shawan-park",
+        "name": "沙灣歷史文化園區",
+        "category": "砲臺 / 歷史園區",
+        "era": "清法戰爭 / 日治官舍脈絡",
+        "address": "基隆市中正區大沙灣石圍遺構與中正路周邊",
+        "lat": 25.14096,
+        "lng": 121.7559858,
+        "summary_zh": "整合大沙灣石圍遺構、要塞司令官邸與校官眷舍等節點，可用來說明基隆港防禦、軍事空間與城市記憶如何疊合。",
+        "source_title": "沙灣歷史文化園區｜觀光多媒體開放資料",
+        "source_url": "https://media.taiwan.net.tw/en-us/portal/travel/details/attraction_376570000a_386559"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.7559858,
+          25.14096
+        ]
+      }
+    }
+  ]
+}

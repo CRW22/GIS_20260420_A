@@ -1,0 +1,21 @@
+中央研究院臺灣百年歷史地圖 WMTS 服務
+官方說明頁：https://gis.sinica.edu.tw/tileserver/
+WMTS 端點：https://gis.sinica.edu.tw/tileserver/wmts
+RESTful 端點：https://gis.sinica.edu.tw/tileserver/file-exists.php?img={Layer_ID}-{Image_Format}-{z}-{x}-{y}
+
+本案例使用的預設圖層：
+- Layer ID: JM20K_1904
+- 說明：1904-日治臺灣堡圖（明治版）-1:20,000
+- Tile matrix set: GoogleMapsCompatible
+- 格式：image/jpeg
+
+官方 WMTS URL template:
+https://gis.sinica.edu.tw/tileserver/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=JM20K_1904&STYLE=_null&TILEMATRIXSET=GoogleMapsCompatible&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=image/jpeg
+
+本案例實際採用的 Leaflet URL template（RESTful）:
+https://gis.sinica.edu.tw/tileserver/file-exists.php?img=JM20K_1904-jpg-{z}-{x}-{y}
+
+注意事項：
+- 這是外部圖磚服務，課堂與 GitHub Pages 展示時需允許網路存取
+- 本案例改採 RESTful tile URL，避免 WMTS 查詢參數在部分瀏覽器環境下切換不穩
+- 若外部圖磚失敗，展示頁面仍需保留 OSM 底圖與本地景點查詢

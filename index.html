@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>基隆車站歷史觀光小工具</title>
+    <meta
+      name="description"
+      content="在基隆車站周邊拖曳圖釘，查看 100 公尺內的歷史景點，並疊加百年歷史地圖。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">Case A · GitHub Pages Demo</p>
+          <h1>基隆車站歷史觀光小工具</h1>
+          <p class="intro">
+            拖曳圖釘或點擊地圖，查看 100 公尺內的歷史景點。歷史圖層來自中研院百年歷史地圖，
+            點位與摘要為教師整理版。
+          </p>
+        </div>
+        <div class="header-card">
+          <span class="pill">基隆車站周邊</span>
+          <span class="pill">100 公尺查詢</span>
+          <span class="pill">歷史底圖切換</span>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="sidebar">
+          <section class="panel">
+            <h2>操作方式</h2>
+            <ul class="flat-list">
+              <li>拖曳金色圖釘，或直接點地圖移動查詢位置。</li>
+              <li>切換「歷史圖層」查看現代街廓與舊圖對照。</li>
+              <li>點選側欄卡片，地圖會自動打開對應景點 popup。</li>
+            </ul>
+          </section>
+
+          <section class="panel">
+            <div class="section-head">
+              <h2>圖層控制</h2>
+              <span id="history-status" class="status-chip">歷史圖層正常</span>
+            </div>
+            <label class="toggle">
+              <input id="history-toggle" type="checkbox" checked />
+              <span>顯示百年歷史地圖</span>
+            </label>
+            <label class="range-field" for="history-opacity">
+              <span>歷史圖層透明度</span>
+              <input id="history-opacity" type="range" min="0.15" max="1" step="0.05" value="0.72" />
+            </label>
+            <button id="reset-view" class="ghost-button" type="button">回到基隆車站</button>
+          </section>
+
+          <section class="panel">
+            <div class="section-head">
+              <h2>查詢結果</h2>
+              <span id="hit-count" class="count-badge">0 筆</span>
+            </div>
+            <p id="query-summary" class="muted">
+              將圖釘移到有興趣的位置，查看周邊歷史景點。
+            </p>
+            <div id="result-list" class="result-list"></div>
+          </section>
+
+          <section class="panel source-panel">
+            <h2>資料來源</h2>
+            <ul class="flat-list compact">
+              <li>
+                歷史底圖：
+                <a href="https://gis.sinica.edu.tw/tileserver/" target="_blank" rel="noreferrer">
+                  中央研究院臺灣百年歷史地圖圖磚服務
+                </a>
+              </li>
+              <li>
+                景點點位：
+                <a href="./data/processed/keelung_history_sites.geojson" target="_blank" rel="noreferrer">
+                  keelung_history_sites.geojson
+                </a>
+              </li>
+              <li>
+                整理說明：
+                <a href="./data/notes/data_prep_notes.md" target="_blank" rel="noreferrer">
+                  data_prep_notes.md
+                </a>
+              </li>
+            </ul>
+          </section>
+        </section>
+
+        <section class="map-section">
+          <div id="map" aria-label="基隆車站歷史地圖"></div>
+          <div class="map-overlay">
+            <div class="overlay-card">
+              <strong>圖例</strong>
+              <div class="legend-row">
+                <span class="legend-dot legend-all"></span>
+                <span>歷史景點</span>
+              </div>
+              <div class="legend-row">
+                <span class="legend-dot legend-hit"></span>
+                <span>100 公尺內</span>
+              </div>
+              <div class="legend-row">
+                <span class="legend-swatch"></span>
+                <span>查詢圈</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

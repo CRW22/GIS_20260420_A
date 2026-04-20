@@ -1,0 +1,368 @@
+:root {
+  color-scheme: light;
+  --paper: #f4eee3;
+  --paper-strong: #efe4d2;
+  --ink: #1d2c2c;
+  --muted: #5d6a66;
+  --moss: #244b46;
+  --copper: #b56d3a;
+  --sea: #6d8f96;
+  --line: rgba(29, 44, 44, 0.14);
+  --shadow: 0 22px 48px rgba(31, 45, 46, 0.14);
+  --radius-lg: 26px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: "Noto Sans TC", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(181, 109, 58, 0.15), transparent 26%),
+    linear-gradient(180deg, #f8f3eb 0%, #efe6d7 100%);
+}
+
+body {
+  min-height: 100vh;
+}
+
+a {
+  color: var(--moss);
+}
+
+.page-shell {
+  width: min(1440px, calc(100vw - 24px));
+  margin: 12px auto;
+  padding: 18px;
+  border: 1px solid rgba(36, 75, 70, 0.1);
+  border-radius: 30px;
+  background: rgba(255, 252, 247, 0.82);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow);
+}
+
+.page-header {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  padding: 12px 8px 24px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--copper);
+  font-size: 0.82rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+.result-card h3 {
+  font-family: "Noto Serif TC", serif;
+  letter-spacing: 0.01em;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 3.2rem);
+  line-height: 1.1;
+}
+
+.intro {
+  max-width: 68ch;
+  margin: 12px 0 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.header-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.pill,
+.status-chip,
+.count-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  background: rgba(36, 75, 70, 0.08);
+  border: 1px solid rgba(36, 75, 70, 0.12);
+}
+
+.status-chip.warn {
+  background: rgba(181, 109, 58, 0.12);
+  border-color: rgba(181, 109, 58, 0.18);
+}
+
+.layout {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 390px minmax(0, 1fr);
+  min-height: 70vh;
+}
+
+.sidebar {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.panel {
+  padding: 18px;
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(246, 239, 228, 0.88)),
+    var(--paper);
+  border: 1px solid var(--line);
+}
+
+.section-head {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.section-head h2,
+.panel h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.muted {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.flat-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  line-height: 1.7;
+}
+
+.flat-list.compact {
+  font-size: 0.95rem;
+}
+
+.toggle,
+.range-field {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+  color: var(--ink);
+}
+
+.toggle {
+  grid-template-columns: auto 1fr;
+  align-items: center;
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--moss);
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--copper);
+}
+
+.ghost-button {
+  margin-top: 14px;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(36, 75, 70, 0.18);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+
+.ghost-button:hover {
+  background: rgba(36, 75, 70, 0.08);
+}
+
+.result-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.result-card,
+.empty-card {
+  padding: 15px;
+  border-radius: 16px;
+  border: 1px solid rgba(36, 75, 70, 0.12);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.result-card button {
+  display: block;
+  width: 100%;
+  margin: -15px;
+  padding: 15px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+}
+
+.result-card button:hover {
+  background: rgba(109, 143, 150, 0.1);
+}
+
+.result-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.chip {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(109, 143, 150, 0.14);
+  border: 1px solid rgba(109, 143, 150, 0.18);
+}
+
+.summary {
+  margin: 0 0 10px;
+  color: var(--ink);
+  line-height: 1.65;
+  font-size: 0.95rem;
+}
+
+.source-link {
+  font-size: 0.9rem;
+}
+
+.map-section {
+  position: relative;
+  min-height: 70vh;
+  border-radius: 30px;
+  overflow: hidden;
+  border: 1px solid rgba(36, 75, 70, 0.12);
+  background: linear-gradient(180deg, #dae3e4, #cad7d8);
+}
+
+#map {
+  width: 100%;
+  min-height: 70vh;
+}
+
+.map-overlay {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  z-index: 500;
+}
+
+.overlay-card {
+  min-width: 180px;
+  padding: 14px;
+  border-radius: 18px;
+  background: rgba(255, 252, 247, 0.9);
+  border: 1px solid rgba(36, 75, 70, 0.12);
+  box-shadow: 0 14px 30px rgba(31, 45, 46, 0.18);
+}
+
+.legend-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.legend-all {
+  background: var(--sea);
+}
+
+.legend-hit {
+  background: var(--copper);
+}
+
+.legend-swatch {
+  width: 18px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(181, 109, 58, 0.28);
+  border: 1px solid rgba(181, 109, 58, 0.5);
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: rgba(255, 252, 247, 0.96);
+}
+
+.popup h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.popup p {
+  margin: 0 0 10px;
+  line-height: 1.6;
+}
+
+.leaflet-container {
+  font: inherit;
+}
+
+@media (max-width: 1040px) {
+  .page-shell {
+    width: min(100vw, calc(100vw - 12px));
+    margin: 6px auto;
+    padding: 12px;
+    border-radius: 20px;
+  }
+
+  .page-header,
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .map-section,
+  #map {
+    min-height: 58vh;
+  }
+
+  .map-overlay {
+    right: 12px;
+    bottom: 12px;
+  }
+}
